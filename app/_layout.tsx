@@ -7,14 +7,14 @@ export default function RootLayout() {
       databaseName="storeKeeper.db"
       onInit={async (db) => {
         await db.execAsync(
-          `CREATE TABLE IF NO EXISTING product()
+          `CREATE TABLE IF NOT EXISTS products(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       productName TEXT NOT NULL,
       quantity INTEGER NOT NULL,
       price INTEGER NOT NULL,
-      image TEXT,
+      image TEXT
       );
-      PRAGMA jornal_mode=WAL;
+      PRAGMA journal_mode=WAL;
       `
         );
       }}
