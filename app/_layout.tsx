@@ -1,24 +1,26 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+import { Stack } from "expo-router";
+import { SQLiteProvider } from "expo-sqlite";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <SQLiteProvider
+      databaseName="storeKeeper.db"
+      onInit={async (db) => {
+        await db.execAsync(
+          `CREATE TABLE IF NO EXISTING product()
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      productName TEXT NOT NULL,
+      quantity INTEGER NOT NULL,
+      price INTEGER NOT NULL,
+      image TEXT,
+      );
+      PRAGMA jornal_mode=WAL;
+      `
+        );
+      }}
+      options={{ useNewConnection: false }}
+    >
+      <Stack />
+    </SQLiteProvider>
   );
 }
