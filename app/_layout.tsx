@@ -20,7 +20,7 @@ export default function RootLayout() {
       }}
       options={{ useNewConnection: false }}
     >
-      <Stack />
+      <Stack screenOptions={{ headerShown: false }} />
     </SQLiteProvider>
   );
 }
