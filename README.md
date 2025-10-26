@@ -59,8 +59,8 @@ The demo showcases adding products, editing details, deleting items, and navigat
 ## Links
 
 - **GitHub Repository**: [https://github.com/khalilulah/storeKeeper](https://github.com/khalilulah/storeKeeper)
-- **Latest Release**: [Download APK](https://github.com/yourusername/khalills-store/releases/latest)
-- **Demo Video**: [Watch on YouTube](https://youtu.be/your-video-id)
+- **Latest Release**: [Download APK](https://drive.google.com/file/d/1vvDalidlVnmd1vkfkE5ny2zXA3N0MC8_/view?usp=sharing)
+- **Demo Video**: [click Link Watch](https://drive.google.com/file/d/1H_DO7ujcwlPouPeUNIPCzpZv9NApRtv1/view?usp=sharing)
 
 ---
 
