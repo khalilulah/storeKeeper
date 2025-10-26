@@ -1,50 +1,93 @@
-# Welcome to your Expo app 👋
+# khalill's Store
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern mobile inventory management application for managing your store's products with ease.
 
-## Get started
+---
 
-1. Install dependencies
+## Features
 
-   ```bash
-   npm install
-   ```
+- Add, edit, and delete products
+- Capture product photos or choose from gallery
+- Track product prices and quantities
+- Local database storage
+- Clean and intuitive interface
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## Installation
 
-In the output, you'll find options to open the app in a
+### Prerequisites
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- Node.js (v14 or higher)
+- Expo CLI
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### Setup
 
 ```bash
-npm run reset-project
+git clone https://github.com/khalilulah/storeKeeper
+cd storeKeeper
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## Download APK
 
-To learn more about developing your project with Expo, look at the following resources:
+**Latest Release: v1.0.0**
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+**[Download storeKeeper APK](https://drive.google.com/file/d/1vvDalidlVnmd1vkfkE5ny2zXA3N0MC8_/view?usp=sharing)**
 
-## Join the community
+### Installation Instructions:
 
-Join our community of developers creating universal apps.
+1. Download the APK file to your Android device
+2. Open the downloaded file
+3. Enable "Install from Unknown Sources" if prompted
+4. Follow the installation prompts
+5. Open the app and start managing your inventory
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## Demo Video
+
+**[Watch Demo Video](https://drive.google.com/file/d/1H_DO7ujcwlPouPeUNIPCzpZv9NApRtv1/view?usp=sharing)**
+
+The demo showcases adding products, editing details, deleting items, and navigating the interface.
+
+---
+
+## Links
+
+- **GitHub Repository**: [https://github.com/khalilulah/storeKeeper](https://github.com/khalilulah/storeKeeper)
+- **Latest Release**: [Download APK](https://github.com/yourusername/khalills-store/releases/latest)
+- **Demo Video**: [Watch on YouTube](https://youtu.be/your-video-id)
+
+---
+
+## Building for Production
+
+```bash
+# Android APK
+eas build --platform android --profile production
+
+# iOS
+eas build --platform ios --profile production
+```
+
+---
+
+## License
+
+MIT License
+
+---
+
+## Author
+
+**Khalil**
+
+GitHub: [@khalilulah](https://github.com/khalilulah)
+
+---
+
+Made with ❤️ by Khalil
