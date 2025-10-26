@@ -4,18 +4,19 @@ import { useSQLiteContext } from "expo-sqlite";
 import { useState } from "react";
 import {
   Alert,
-  Button,
   Image,
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import styles from "../assets/styles/addProductStyle";
 
-export default function Index() {
+const addNewProduct = () => {
   const [form, setForm] = useState({
     productName: "",
     quantity: "",
@@ -109,7 +110,6 @@ export default function Index() {
         return;
       }
 
-      //make sure the user enters a valid quantity
       if (
         !form.quantity ||
         isNaN(parseInt(form.quantity, 10)) ||
@@ -119,7 +119,6 @@ export default function Index() {
         return;
       }
 
-      //make sure the user enters a valid price
       if (!form.price || isNaN(parseInt(form.price, 10))) {
         Alert.alert("Error", "Please enter a valid price");
         return;
@@ -134,9 +133,8 @@ export default function Index() {
           form.image,
         ]
       );
-      console.log(form);
 
-      Alert.alert("Success", "Product added sucessfully!");
+      Alert.alert("Success", "Product added successfully!");
       setForm({
         productName: "",
         quantity: "",
@@ -145,58 +143,92 @@ export default function Index() {
       });
       router.push("/");
     } catch (error: any) {
-      Alert.alert("Error", error.message || "An error occured");
+      Alert.alert("Error", error.message || "An error occurred");
     }
   };
-  return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1 }}
-    >
-      <SafeAreaView
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <View>
-          <TextInput
-            placeholder="Product Name"
-            value={form.productName}
-            onChangeText={(text) => setForm({ ...form, productName: text })}
-          />
-          <TextInput
-            placeholder="Quantity"
-            value={form.quantity}
-            onChangeText={(text) => setForm({ ...form, quantity: text })}
-            keyboardType="numeric"
-          />
-          <TextInput
-            placeholder="Price"
-            value={form.price}
-            onChangeText={(text) => setForm({ ...form, price: text })}
-            keyboardType="decimal-pad"
-          />
-          {/* Image Preview */}
-          {form.image ? (
-            <View>
-              <Image source={{ uri: form.image }} />
-              <TouchableOpacity onPress={handleImageSelection}>
-                <Text>Change Image</Text>
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <TouchableOpacity onPress={handleImageSelection}>
-              <Text>📷 Add Product Image</Text>
-              <Text>Tap to take photo or choose from gallery</Text>
-            </TouchableOpacity>
-          )}
 
-          <Button title="Add Product" onPress={handleSubmit} />
-        </View>
-        <Text>Edit app/index.tsx to edit this screen.</Text>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
+  return (
+    <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.keyboardView}
+      >
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+          {/* Header */}
+          <View style={styles.header}>
+            <TouchableOpacity onPress={() => router.back()}>
+              <Text style={styles.cancelButton}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* Form */}
+          <View style={styles.formContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Product Name"
+              placeholderTextColor="#999"
+              value={form.productName}
+              onChangeText={(text) => setForm({ ...form, productName: text })}
+            />
+
+            <TextInput
+              style={styles.input}
+              placeholder="Quantity"
+              placeholderTextColor="#999"
+              value={form.quantity}
+              onChangeText={(text) => setForm({ ...form, quantity: text })}
+              keyboardType="numeric"
+            />
+
+            <TextInput
+              style={styles.input}
+              placeholder="Price (₦)"
+              placeholderTextColor="#999"
+              value={form.price}
+              onChangeText={(text) => setForm({ ...form, price: text })}
+              keyboardType="decimal-pad"
+            />
+
+            {/* Image Preview */}
+            {form.image ? (
+              <View style={styles.imageContainer}>
+                <Image
+                  source={{ uri: form.image }}
+                  style={styles.imagePreview}
+                />
+                <TouchableOpacity
+                  style={styles.changeImageButton}
+                  onPress={handleImageSelection}
+                >
+                  <Text style={styles.changeImageText}>Change Image</Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <TouchableOpacity
+                style={styles.imagePlaceholder}
+                onPress={handleImageSelection}
+              >
+                <Text style={styles.imagePlaceholderIcon}>📷</Text>
+                <Text style={styles.imagePlaceholderText}>
+                  Add Product Image
+                </Text>
+                <Text style={styles.imagePlaceholderSubtext}>
+                  Tap to take photo or choose from gallery
+                </Text>
+              </TouchableOpacity>
+            )}
+
+            <TouchableOpacity
+              style={styles.submitButton}
+              onPress={handleSubmit}
+            >
+              <Text style={styles.submitButtonText}>Add Product</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
-}
+};
+
+export default addNewProduct;

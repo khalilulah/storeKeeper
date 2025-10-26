@@ -1,7 +1,10 @@
 import { Product } from "@/types/type";
+import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect } from "@react-navigation/native";
 import { useSQLiteContext } from "expo-sqlite";
 import React, { useCallback, useState } from "react";
+
+import { COLORS } from "../assets/styles/style";
 
 import {
   ActivityIndicator,
@@ -80,7 +83,7 @@ const ProductList = () => {
           <Image source={{ uri: item.image }} style={styles.productImage} />
         ) : (
           <View style={styles.imagePlaceholder}>
-            <Text style={styles.placeholderIcon}>📦</Text>
+            <Text style={styles.placeholderIcon}>📂 </Text>
           </View>
         )}
       </View>
@@ -104,14 +107,14 @@ const ProductList = () => {
           style={styles.editButton}
           onPress={() => handleEdit(item)}
         >
-          <Text style={styles.editIcon}>✏️</Text>
+          <Ionicons name="create-outline" size={30} color="#4f84f7ff" />
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.deleteButton}
           onPress={() => handleDelete(item.id, item.productName)}
         >
-          <Text style={styles.deleteIcon}>🗑️</Text>
+          <Ionicons name="trash-outline" size={30} color="#f66969ff" />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -127,6 +130,18 @@ const ProductList = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {products.length > 0 ? (
+        <View style={styles.headerBar}>
+          <Text style={styles.headerText}>My Products ({products.length})</Text>
+          <TouchableOpacity
+            onPress={() => router.push("/addNewProduct")}
+            style={{}}
+          >
+            <Ionicons name="add-outline" size={30} color="#4f84f7ff" />
+          </TouchableOpacity>
+        </View>
+      ) : null}
+
       <FlatList
         data={products}
         renderItem={renderItem}
@@ -134,53 +149,28 @@ const ProductList = () => {
         contentContainerStyle={styles.listContent}
         ListEmptyComponent={
           <View style={styles.emptyContainer}>
-            <Text style={styles.emptyIcon}>📦</Text>
-            <Text style={styles.emptyText}>No products yet</Text>
+            <View style={styles.emptyIconWrapper}>
+              <Ionicons name="cube-outline" size={60} color={COLORS.primary} />
+            </View>
+
+            <Text style={styles.emptyTitle}>No Products Yet</Text>
+            <Text style={styles.emptySubtitle}>
+              Keep track of your stock easily. Tap the button below to add your
+              first product.
+            </Text>
+
             <TouchableOpacity
               onPress={() => router.push("/addNewProduct")}
-              style={{
-                backgroundColor: "#007AFF",
-                paddingHorizontal: 24,
-
-                paddingVertical: 12,
-                borderRadius: 8,
-                marginTop: 16,
-              }}
+              style={styles.addProductButton}
             >
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 16,
-                  fontWeight: "600",
-                }}
-              >
-                Add your first product to get started
-              </Text>
+              <Ionicons
+                name="add-outline"
+                size={22}
+                color={COLORS.accentLight}
+              />
+              <Text style={styles.addProductButtonText}>Add Product</Text>
             </TouchableOpacity>
           </View>
-        }
-        ListHeaderComponent={
-          <TouchableOpacity
-            style={{
-              backgroundColor: "#007AFF",
-              paddingHorizontal: 8,
-              paddingVertical: 6,
-              width: 130,
-              borderRadius: 8,
-              marginBottom: 10,
-            }}
-            onPress={() => router.push("/addNewProduct")}
-          >
-            <Text
-              style={{
-                color: "white",
-                fontSize: 16,
-                fontWeight: "600",
-              }}
-            >
-              Add product
-            </Text>
-          </TouchableOpacity>
         }
       />
     </SafeAreaView>

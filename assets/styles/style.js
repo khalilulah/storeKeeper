@@ -1,130 +1,216 @@
-const { StyleSheet } = require("react-native");
+import { Dimensions, StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+const { width, height } = Dimensions.get("window");
+
+export const COLORS = {
+  primary: "#4f84f7ff",
+  secondary: "#60A5FA",
+  background: "#F9FAFB",
+  card: "#FFFFFF",
+  text: "#0e1913ef",
+  subtext: "#6B7280",
+  border: "#E5E7EB",
+  danger: "#EF4444",
+  success: "#10B981",
+  icon: "#1E3A8A",
+  accentLight: "#E3F2FD",
+};
+
+export const SIZES = {
+  base: 8,
+  radius: 12,
+  padding: 16,
+  fontSmall: 12,
+  font: 14,
+  fontMedium: 16,
+  fontLarge: 20,
+  fontXL: 24,
+  width,
+  height,
+};
+
+// Shadow Style
+export const SHADOW = {
+  shadowColor: "#000",
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.08,
+  shadowRadius: 3,
+};
+
+//  Shared Styles
+export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: COLORS.background,
+    paddingHorizontal: SIZES.padding,
   },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: "center",
+
+  // Header Bar
+  headerBar: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#f5f5f5",
+    paddingVertical: SIZES.padding,
   },
-  listContent: {
-    padding: 16,
+  headerText: {
+    fontSize: SIZES.fontLarge,
+    fontWeight: "700",
+    color: COLORS.text,
   },
+
+  // Product Card
   card: {
     flexDirection: "row",
-    backgroundColor: "white",
-    borderRadius: 12,
-    padding: 12,
-    marginBottom: 12,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: COLORS.card,
+    borderRadius: SIZES.radius,
+    padding: SIZES.padding,
+    marginBottom: SIZES.base * 2,
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    ...SHADOW,
   },
+
   imageContainer: {
-    marginRight: 12,
+    width: width * 0.25,
+    height: width * 0.25,
+    borderRadius: SIZES.radius,
+    backgroundColor: COLORS.background,
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
   },
   productImage: {
-    width: 70,
-    height: 70,
-    borderRadius: 8,
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
   imagePlaceholder: {
-    width: 70,
-    height: 70,
-    borderRadius: 8,
-    backgroundColor: "#e0e0e0",
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: "100%",
   },
   placeholderIcon: {
-    fontSize: 30,
+    fontSize: SIZES.fontXL,
   },
+
+  // Product Info
   detailsContainer: {
     flex: 1,
-    justifyContent: "center",
+    marginLeft: SIZES.padding,
   },
   productName: {
-    fontSize: 18,
+    fontSize: SIZES.fontMedium,
     fontWeight: "600",
-    color: "#333",
-    marginBottom: 6,
+    color: COLORS.text,
+    marginBottom: SIZES.base / 2,
   },
   infoRow: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 4,
+    marginVertical: 2,
   },
   infoLabel: {
-    fontSize: 14,
-    color: "#666",
-    marginRight: 6,
-    fontWeight: "500",
+    fontSize: SIZES.font,
+    color: COLORS.subtext,
+    marginRight: 4,
   },
   infoValue: {
-    fontSize: 14,
-    color: "#333",
+    fontSize: SIZES.font,
+    color: COLORS.text,
+    fontWeight: "500",
   },
   priceValue: {
-    fontSize: 16,
-    color: "#007AFF",
+    fontSize: SIZES.fontMedium,
+    color: COLORS.primary,
     fontWeight: "600",
   },
+
+  // Action Buttons
   actionsContainer: {
-    justifyContent: "center",
     alignItems: "center",
-    marginLeft: 8,
+    gap: 10,
   },
   editButton: {
-    backgroundColor: "#E3F2FD",
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 8,
-  },
-  editIcon: {
-    fontSize: 18,
+    padding: SIZES.base,
+    borderRadius: SIZES.radius / 2,
   },
   deleteButton: {
-    backgroundColor: "#FFEBEE",
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    justifyContent: "center",
-    alignItems: "center",
+    padding: SIZES.base,
+    borderRadius: SIZES.radius / 2,
   },
   deleteIcon: {
-    fontSize: 18,
+    fontSize: SIZES.fontLarge,
   },
-  emptyContainer: {
-    alignItems: "center",
+
+  // Loading State
+  loadingContainer: {
+    flex: 1,
     justifyContent: "center",
-    paddingVertical: 60,
+    alignItems: "center",
+    backgroundColor: COLORS.background,
   },
-  emptyIcon: {
-    fontSize: 60,
-    marginBottom: 16,
+
+  // FlatList
+  listContent: {
+    paddingBottom: SIZES.padding * 2,
   },
-  emptyText: {
+
+  // Empty List Styles
+  emptyContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: SIZES.padding * 2,
+    backgroundColor: COLORS.background,
+  },
+  emptyIconWrapper: {
+    backgroundColor: COLORS.accentLight,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 2,
+    marginBottom: 20,
+  },
+  emptyTitle: {
     fontSize: 20,
-    fontWeight: "600",
-    color: "#333",
+    fontWeight: "700",
+    color: COLORS.text,
     marginBottom: 8,
   },
-  emptySubtext: {
+  emptySubtitle: {
     fontSize: 14,
-    color: "#666",
+    color: COLORS.subtext,
+    textAlign: "center",
+    paddingHorizontal: 30,
+    lineHeight: 20,
+    marginBottom: 20,
+  },
+  addProductButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLORS.primary,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: SIZES.radius * 1.2,
+    shadowColor: COLORS.primary,
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 6,
+    elevation: 3,
+  },
+  addProductButtonText: {
+    color: COLORS.accentLight,
+    fontSize: 16,
+    fontWeight: "600",
+    marginLeft: 8,
   },
 });
-
-export default styles;
