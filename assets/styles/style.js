@@ -4,15 +4,11 @@ const { width, height } = Dimensions.get("window");
 
 export const COLORS = {
   primary: "#4f84f7ff",
-  secondary: "#60A5FA",
   background: "#F9FAFB",
   card: "#FFFFFF",
   text: "#0e1913ef",
   subtext: "#6B7280",
   border: "#E5E7EB",
-  danger: "#EF4444",
-  success: "#10B981",
-  icon: "#1E3A8A",
   accentLight: "#E3F2FD",
 };
 
@@ -27,14 +23,6 @@ export const SIZES = {
   fontXL: 24,
   width,
   height,
-};
-
-// Shadow Style
-export const SHADOW = {
-  shadowColor: "#000",
-  shadowOffset: { width: 0, height: 2 },
-  shadowOpacity: 0.08,
-  shadowRadius: 3,
 };
 
 //  Shared Styles
@@ -69,7 +57,10 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     borderWidth: 1,
     borderColor: COLORS.border,
-    ...SHADOW,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 3,
   },
 
   imageContainer: {
@@ -140,9 +131,6 @@ export default StyleSheet.create({
   deleteButton: {
     padding: SIZES.base,
     borderRadius: SIZES.radius / 2,
-  },
-  deleteIcon: {
-    fontSize: SIZES.fontLarge,
   },
 
   // Loading State
